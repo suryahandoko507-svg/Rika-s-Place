@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Rika's Place Guest House, penginapan di tepi sungai Bukit Lawang. 3 kamar Deluxe Double.">
-<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<meta name="description" content="Rika's Place Guest House, penginapan di tepi sungai Bukit Lawang. Kamar Standar Deluxe dan Double Deluxe, pesan langsung lewat WhatsApp.">
 <title>Rika's Place Guest House</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap">
 <style>
-/* Layout: satu halaman, kolom 1080px. Hero nama + foto sungai, tentang, fasilitas, kamar deluxe (galeri), sekitar, kontak hitam. */
+/* Layout: satu halaman, kolom 1080px. Hero foto depan, tentang, galeri suasana, fasilitas, 2 tipe kamar, sekitar, kontak hitam. */
 :root {
+  color-scheme: light;
   --bg: #FFFFFF;
   --surface: #F7F2EC;
   --fg: #141210;
@@ -23,6 +23,7 @@
   --foot-bg: #141210; --foot-fg: #FFFFFF; --foot-accent: #E3984D;
   --sky: #F3ECE3; --far: #D8C2A8; --near: #8A5A34; --wall: #FFFFFF;
   --roof: #1A1714; --wood: #C2813F; --glass: #D5D9D8; --sun: #E3A55E;
+  --err: #B3261E;
   --font-display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
   --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
@@ -33,6 +34,7 @@
     --foot-bg: #1A1816; --foot-fg: #F5F1EC; --foot-accent: #E3984D;
     --sky: #231E19; --far: #3A2F25; --near: #5A4330; --wall: #E8E2D9;
     --roof: #0A0908; --wood: #C58236; --glass: #4A4F50; --sun: #D9873A;
+    --err: #F2B8B5;
     color-scheme: dark;
   }
 }
@@ -42,21 +44,36 @@
   --foot-bg: #1A1816; --foot-fg: #F5F1EC; --foot-accent: #E3984D;
   --sky: #231E19; --far: #3A2F25; --near: #5A4330; --wall: #E8E2D9;
   --roof: #0A0908; --wood: #C58236; --glass: #4A4F50; --sun: #D9873A;
+  --err: #F2B8B5;
   color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 body {
-  background: var(--bg); color: var(--fg);
+  margin: 0; background: var(--bg); color: var(--fg);
   font-family: var(--font-body); font-size: 16px; line-height: 1.6;
   padding-inline: 16px;
 }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
 h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.1; margin: 0; text-wrap: balance; letter-spacing: -.015em; }
 p { margin: 0; }
 a { color: inherit; }
+button { font-family: inherit; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 .wrap { max-width: 1080px; margin-inline: auto; }
 .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+
+/* tombol */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--btn); color: var(--btn-fg); border: 1px solid var(--btn); border-radius: 4px;
+  padding: 14px 24px; font: 600 15px var(--font-body); text-decoration: none; cursor: pointer; text-align: center;
+}
+.btn:hover { filter: brightness(1.1); }
+.btn.ghost { background: transparent; color: var(--fg); border-color: var(--fg); }
+.btn.sm { padding: 8px 16px; font-size: 14px; }
 
 /* header */
 .top {
@@ -64,25 +81,31 @@ a { color: inherit; }
   background: var(--bg); border-bottom: 1px solid var(--line);
   margin-inline: -16px; padding-inline: 16px;
 }
-.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 10px; }
 .brand { font-family: var(--font-display); font-weight: 700; font-size: 20px; text-decoration: none; letter-spacing: -.01em; }
-.top nav { display: flex; gap: 20px; font-size: 14px; font-weight: 500; }
-.top nav a { text-decoration: none; color: var(--muted); }
-.top nav a:hover { color: var(--fg); }
-@media (max-width: 480px) { .top nav a:first-child, .top nav a:nth-child(2) { display: none; } }
+.top nav { display: flex; align-items: center; gap: 20px; font-size: 14px; font-weight: 500; }
+.top nav a:not(.btn) { text-decoration: none; color: var(--muted); }
+.top nav a:not(.btn):hover { color: var(--fg); }
+@media (max-width: 640px) { .top nav a:not(.btn) { display: none; } }
 
 /* hero */
-.hero { padding-block: 40px 8px; display: grid; gap: 24px; }
+.hero { padding-block: 36px 0; display: grid; gap: 24px; }
 .hero h1 { font-size: clamp(2.8rem, 10vw, 5.8rem); }
 .hero .sub { color: var(--muted); max-width: 54ch; font-size: 1.1rem; }
-.hero-img { border-radius: 4px; overflow: hidden; background: var(--sky); line-height: 0; }
-.hero-img svg { width: 100%; height: auto; display: block; }
-.facts { display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 14px; color: var(--muted); }
-.facts b { color: var(--fg); font-weight: 600; }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.hero-img { border-radius: 4px; overflow: hidden; background: var(--sky); aspect-ratio: 16 / 10; }
+@media (max-width: 640px) { .hero-img { aspect-ratio: 4 / 3; } }
+.hero-img svg, .hero-img img, .pic svg, .pic img { width: 100%; height: 100%; display: block; }
+.hero-img img, .pic img { object-fit: cover; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0 24px; border-top: 2px solid var(--fg); }
+.facts div { padding-block: 12px; border-bottom: 1px solid var(--line); }
+.facts span { display: block; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.facts b { font-weight: 600; font-variant-numeric: tabular-nums; }
 
-section { padding-block: 56px 8px; }
-.sec-head { display: grid; gap: 8px; margin-bottom: 28px; }
+section { padding-block: 64px 0; }
+.sec-head { display: grid; gap: 8px; margin-bottom: 28px; max-width: 60ch; }
 .sec-head h2 { font-size: clamp(1.8rem, 5vw, 2.6rem); }
+.sec-head p { color: var(--muted); }
 
 /* tentang */
 .concept { display: grid; gap: 32px; grid-template-columns: 1fr; }
@@ -94,43 +117,45 @@ section { padding-block: 56px 8px; }
 .chars h3 { font-size: 1.2rem; margin-bottom: 2px; }
 .chars p { color: var(--muted); font-size: 15px; }
 
+/* galeri */
+.gal { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); }
+@media (min-width: 700px) { .gal { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; } }
+.tile { margin: 0; position: relative; }
+.tile .pic { aspect-ratio: 4 / 3; border-radius: 4px; overflow: hidden; background: var(--surface); }
+.tile.has-photo, .shot.has-photo { cursor: zoom-in; }
+.tile.has-photo:hover img, .shot.has-photo:hover img { filter: brightness(.92); }
+.tile figcaption.ex { position: absolute; left: 8px; bottom: 8px; font-size: 12px; background: var(--bg); color: var(--fg); padding: 1px 8px; border-radius: 999px; }
+
 /* fasilitas */
 .fac { list-style: none; margin: 0; padding: 0; display: grid; gap: 0 32px; grid-template-columns: 1fr; border-top: 2px solid var(--fg); }
 @media (min-width: 640px) { .fac { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 960px) { .fac { grid-template-columns: 1fr 1fr 1fr; } }
-.fac li { display: flex; justify-content: space-between; gap: 16px; padding-block: 14px; border-bottom: 1px solid var(--line); }
-.fac span:last-child { color: var(--muted); font-size: 14px; text-align: right; }
-.fac span:first-child { font-weight: 500; }
+.fac li { padding-block: 16px; border-bottom: 1px solid var(--line); display: grid; gap: 2px; }
+.fac b { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; }
+.fac span { color: var(--muted); font-size: 15px; }
 
 /* kamar */
-.room { display: grid; gap: 28px; grid-template-columns: 1fr; min-width: 0; }
-@media (min-width: 900px) { .room { grid-template-columns: 1.25fr 1fr; gap: 48px; align-items: start; } }
+.rooms { display: grid; gap: 56px 32px; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .rooms { grid-template-columns: 1fr 1fr; } }
+.room { min-width: 0; display: grid; gap: 16px; align-content: start; }
 .gallery {
   display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; min-width: 0;
   margin-inline: -16px; padding-inline: 16px; scroll-padding-inline: 16px; padding-bottom: 6px;
   scrollbar-width: thin;
 }
 @media (min-width: 900px) { .gallery { margin-inline: 0; padding-inline: 0; scroll-padding-inline: 0; } }
-.shot { flex: 0 0 82%; max-width: 440px; scroll-snap-align: start; margin: 0; }
-.shot .pic { aspect-ratio: 4 / 3; border-radius: 4px; overflow: hidden; background: var(--surface); line-height: 0; }
-.shot svg { width: 100%; height: 100%; display: block; }
+.shot { flex: 0 0 84%; max-width: 440px; scroll-snap-align: start; margin: 0; }
+.shot .pic { aspect-ratio: 4 / 3; border-radius: 4px; overflow: hidden; background: var(--surface); }
 .shot figcaption { font-size: 13px; color: var(--muted); padding-top: 6px; }
-.info { display: grid; gap: 16px; align-content: start; min-width: 0; }
-.room h3 { font-size: clamp(1.8rem, 5vw, 2.4rem); }
+.room-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px 16px; flex-wrap: wrap; }
+.room h3 { font-size: clamp(1.7rem, 5vw, 2.2rem); }
 .price { font-variant-numeric: tabular-nums; }
-.price b { font-size: 1.6rem; font-weight: 700; font-family: var(--font-display); }
+.price b { font-size: 1.5rem; font-weight: 700; font-family: var(--font-display); }
 .price span { color: var(--muted); font-size: 14px; }
-.info .desc { color: var(--muted); }
+.room .desc { color: var(--muted); }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
 .tags li { font-size: 13px; border: 1px solid var(--line); border-radius: 999px; padding: 2px 12px; }
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  background: var(--btn); color: var(--btn-fg); border: 0; border-radius: 4px;
-  padding: 14px 24px; font: 600 15px var(--font-body); text-decoration: none; cursor: pointer;
-}
-.btn:hover { filter: brightness(1.1); }
-.info .btn { justify-self: start; }
-@media (max-width: 480px) { .info .btn { justify-self: stretch; } }
+.room .btn { justify-self: start; }
+@media (max-width: 480px) { .room .btn { justify-self: stretch; } }
 
 /* sekitar */
 .near { list-style: none; margin: 0; padding: 0; display: grid; gap: 0 32px; grid-template-columns: 1fr; border-top: 2px solid var(--fg); }
@@ -140,53 +165,86 @@ section { padding-block: 56px 8px; }
 .near p { color: var(--muted); font-size: 15px; }
 
 /* kontak */
-footer { margin-top: 72px; margin-inline: -16px; padding: 48px 16px 40px; background: var(--foot-bg); color: var(--foot-fg); }
+footer { margin-top: 72px; margin-inline: -16px; padding: 48px 16px calc(40px + 56px); background: var(--foot-bg); color: var(--foot-fg); }
 footer .wrap { display: grid; gap: 32px; grid-template-columns: 1fr; }
 @media (min-width: 820px) { footer .wrap { grid-template-columns: 1.2fr 1fr 1fr; } }
 footer h2 { font-size: clamp(1.8rem, 5vw, 2.5rem); }
-footer .eyebrow { color: var(--foot-accent); display: block; margin-bottom: 6px; }
+footer .eyebrow { color: var(--foot-accent); display: block; margin-bottom: 4px; }
 footer p, footer a { font-size: 15px; }
-footer .list { display: grid; gap: 14px; min-width: 0; align-content: start; }
+footer .list { display: grid; gap: 16px; min-width: 0; align-content: start; }
 footer .num { font-variant-numeric: tabular-nums; user-select: all; overflow-wrap: anywhere; }
 footer a.out { display: inline-flex; width: fit-content; border-bottom: 1px solid var(--foot-accent); text-decoration: none; padding-bottom: 1px; }
 footer small { display: block; margin-top: 36px; opacity: .65; font-size: 13px; }
 
-/* modal */
+/* tombol chat melayang */
+.fab {
+  position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 30;
+  background: var(--btn); color: var(--btn-fg); text-decoration: none; font-weight: 600; font-size: 14px;
+  padding: 12px 18px; border-radius: 999px; box-shadow: 0 4px 14px rgba(0,0,0,.25);
+}
+
+/* popup reservasi */
 .overlay {
   position: fixed; inset: 0; z-index: 50; display: flex; align-items: flex-end; justify-content: center;
-  background: rgba(10, 8, 6, .65); padding: 0;
+  background: rgba(10, 8, 6, .65);
 }
-.overlay[hidden] { display: none !important; }
 .sheet {
-  background: var(--bg); color: var(--fg); width: 100%; max-width: 480px; max-height: 100%; overflow-y: auto;
-  border-radius: 10px 10px 0 0; padding: 22px 20px calc(22px + env(safe-area-inset-bottom, 0px));
+  background: var(--bg); color: var(--fg); width: 100%; max-width: 520px; max-height: 100%; overflow-y: auto;
+  border-radius: 12px 12px 0 0; padding: 20px 18px calc(22px + env(safe-area-inset-bottom, 0px));
   display: grid; gap: 16px;
 }
-@media (min-width: 560px) { .overlay { align-items: center; padding: 16px; } .sheet { border-radius: 10px; } }
+@media (min-width: 560px) { .overlay { align-items: center; padding: 16px; } .sheet { border-radius: 12px; } }
 .sheet-top { display: flex; justify-content: space-between; align-items: start; gap: 12px; }
-.sheet h2 { font-size: 1.5rem; }
-.x { background: none; border: 1px solid var(--line); color: var(--fg); width: 36px; height: 36px; border-radius: 4px; font-size: 18px; cursor: pointer; flex: none; }
-.row { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
-.field { display: grid; gap: 4px; min-width: 0; align-content: start; }
-.field.full { grid-column: 1 / -1; }
-label { font-size: 13px; font-weight: 600; }
-input, textarea {
+.sheet h2 { font-size: 1.6rem; }
+.x { background: none; border: 1px solid var(--line); color: var(--fg); width: 40px; height: 40px; border-radius: 4px; font-size: 18px; cursor: pointer; flex: none; }
+form { display: grid; gap: 16px; }
+fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+legend, label.lb { font-size: 13px; font-weight: 600; padding: 0; margin-bottom: 6px; display: block; }
+.types { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.type { position: relative; min-width: 0; }
+.type input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.type span { display: grid; gap: 2px; border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; background: var(--surface); height: 100%; }
+.type b { font-family: var(--font-display); font-size: 1.05rem; }
+.type small { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.type input:checked + span { border: 2px solid var(--accent); padding: 9px 11px; background: var(--bg); }
+.type input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+.field { display: grid; gap: 0; min-width: 0; }
+input[type="text"], input[type="date"], textarea {
   font: 16px var(--font-body); color: var(--fg); background: var(--surface);
-  border: 1px solid var(--line); border-radius: 4px; padding: 10px 12px; width: 100%; min-width: 0;
+  border: 1px solid var(--line); border-radius: 6px; padding: 11px 12px; width: 100%; min-width: 0;
 }
-textarea { resize: vertical; min-height: 64px; }
-.hint { font-size: 12px; color: var(--muted); }
-.total { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-top: 1px solid var(--line); padding-top: 14px; font-variant-numeric: tabular-nums; }
-.total b { font-size: 1.3rem; font-weight: 700; font-family: var(--font-display); }
-.done { border: 1px solid var(--line); background: var(--surface); border-radius: 4px; padding: 12px 14px; font-size: 14px; }
-.sheet .btn { width: 100%; }
-@media (prefers-reduced-motion: no-preference) { .btn { transition: filter .15s; } }
+textarea { resize: vertical; min-height: 60px; }
+.err { color: var(--err); font-size: 13px; min-height: 0; margin-top: 4px; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.stepper { display: grid; grid-template-columns: 36px 1fr 36px; align-items: stretch; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--surface); }
+.stepper button { border: 0; background: none; color: var(--fg); font-size: 20px; cursor: pointer; padding: 0; height: 44px; }
+.stepper button:hover { background: var(--line); }
+.stepper output { display: grid; place-items: center; font-weight: 600; font-variant-numeric: tabular-nums; min-width: 0; }
+.hint { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.out-line { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+.out-line b { color: var(--fg); font-weight: 600; text-align: right; }
+.preview { border: 1px dashed var(--accent); border-radius: 6px; padding: 12px 14px; background: var(--surface); }
+.preview h3 { font-size: .8rem; font-family: var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.preview pre { margin: 0; font: 14px/1.55 var(--font-body); white-space: pre-wrap; overflow-wrap: anywhere; }
+.total { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-variant-numeric: tabular-nums; }
+.total b { font-size: 1.5rem; font-weight: 700; font-family: var(--font-display); }
+.send { width: 100%; padding: 16px 24px; font-size: 16px; }
+.done { font-size: 14px; color: var(--muted); }
+
+/* lightbox */
+.lbx { position: fixed; inset: 0; z-index: 80; background: rgba(8, 6, 5, .94); display: grid; place-items: center; padding: 56px 12px; }
+.lbx img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+.lbx button { position: absolute; background: rgba(255,255,255,.12); color: #fff; border: 0; width: 44px; height: 44px; border-radius: 999px; font-size: 22px; cursor: pointer; }
+.lbx .c { top: calc(8px + env(safe-area-inset-top, 0px)); right: 12px; }
+.lbx .p { left: 8px; top: 50%; margin-top: -22px; }
+.lbx .n { right: 8px; top: 50%; margin-top: -22px; }
+.lbx p { position: absolute; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); left: 0; right: 0; text-align: center; color: #ddd; font-size: 13px; padding-inline: 16px; }
+@media (prefers-reduced-motion: no-preference) { .btn, .tile img, .shot img { transition: filter .15s; } }
 </style>
 </head>
 <body>
 
-
-<!-- Gambar contoh (ilustrasi). Ganti dengan foto asli Rika's Place. -->
+<!-- Gambar contoh (ilustrasi). Tampil hanya jika foto asli belum ada di folder images/ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <symbol id="s-bed" viewBox="0 0 400 300">
@@ -208,12 +266,9 @@ textarea { resize: vertical; min-height: 64px; }
       <rect y="220" width="400" height="80" fill="var(--far)" opacity=".5"/>
       <rect x="250" y="40" width="110" height="230" fill="var(--glass)" opacity=".6"/>
       <path d="M250 40h110v230H250z" fill="none" stroke="var(--roof)" stroke-width="5"/>
-      <path d="M290 40v26h40" stroke="var(--roof)" stroke-width="5" fill="none"/>
-      <rect x="322" y="62" width="24" height="10" rx="5" fill="var(--roof)"/>
       <rect x="50" y="60" width="100" height="90" rx="4" fill="var(--glass)"/>
       <rect x="40" y="160" width="130" height="18" rx="4" fill="var(--wall)" stroke="var(--line)" stroke-width="2"/>
       <rect x="60" y="178" width="90" height="72" fill="var(--wood)"/>
-      <circle cx="105" cy="150" r="3" fill="var(--roof)"/>
     </symbol>
     <symbol id="s-meet" viewBox="0 0 400 300">
       <rect width="400" height="300" fill="var(--sky)"/>
@@ -224,7 +279,6 @@ textarea { resize: vertical; min-height: 64px; }
       <rect x="110" y="170" width="180" height="14" rx="2" fill="var(--wood)"/>
       <rect x="130" y="184" width="10" height="58" fill="var(--roof)"/>
       <rect x="260" y="184" width="10" height="58" fill="var(--roof)"/>
-      <rect x="130" y="150" width="30" height="12" rx="2" fill="var(--wall)" stroke="var(--line)" stroke-width="2"/>
       <rect x="240" y="148" width="40" height="22" rx="2" fill="var(--glass)"/>
       <rect x="70" y="190" width="30" height="8" fill="var(--roof)"/>
       <rect x="70" y="160" width="6" height="34" fill="var(--roof)"/>
@@ -232,7 +286,6 @@ textarea { resize: vertical; min-height: 64px; }
       <rect x="300" y="190" width="30" height="8" fill="var(--roof)"/>
       <rect x="324" y="160" width="6" height="34" fill="var(--roof)"/>
       <rect x="322" y="198" width="6" height="44" fill="var(--roof)"/>
-      <rect x="150" y="212" width="90" height="8" fill="var(--roof)" opacity="0"/>
     </symbol>
     <symbol id="s-river" viewBox="0 0 400 300">
       <rect width="400" height="300" fill="var(--sky)"/>
@@ -241,10 +294,7 @@ textarea { resize: vertical; min-height: 64px; }
       <path d="M0 170q80-30 170-6t230-14v110H0z" fill="var(--near)"/>
       <path d="M0 210q100-20 200 0t200-6v96H0z" fill="var(--glass)"/>
       <path d="M40 240q40-8 80 0M220 232q50-8 100 0M120 268q60-8 120 0" stroke="var(--wall)" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>
-      <rect y="268" width="400" height="32" fill="var(--wood)" opacity=".6"/>
       <rect x="0" y="262" width="400" height="8" fill="var(--roof)"/>
-      <rect x="40" y="226" width="6" height="40" fill="var(--roof)"/>
-      <rect x="354" y="226" width="6" height="40" fill="var(--roof)"/>
     </symbol>
   </defs>
 </svg>
@@ -257,40 +307,40 @@ textarea { resize: vertical; min-height: 64px; }
       <a href="#fasilitas">Fasilitas</a>
       <a href="#kamar">Kamar</a>
       <a href="#kontak">Kontak</a>
+      <a class="btn sm" href="#kamar" data-open="standar">Pesan</a>
     </nav>
   </div>
 </header>
 
 <main class="wrap" id="atas">
-  <section class="hero" style="padding-top:40px">
+  <section class="hero" style="padding-top:36px">
     <div style="display:grid;gap:14px">
       <span class="eyebrow">Guest House · Bukit Lawang</span>
       <h1>Rika's Place</h1>
       <p class="sub">Letak strategis di tepi sungai Bukit Lawang dengan pemandangan langsung menghadap sungai Bukit Lawang Indah.</p>
+      <div class="cta">
+        <a class="btn" href="#kamar">Lihat kamar</a>
+        <a class="btn ghost" href="#suasana">Lihat suasana</a>
+      </div>
     </div>
 
-    <div class="hero-img">
-      <svg viewBox="0 0 800 400" role="img" aria-label="Ilustrasi guest house di tepi sungai dengan perbukitan hutan di belakangnya">
+    <div class="hero-img" data-ph="images/depan" data-alt="Tampak depan Rika's Place Guest House" data-eager>
+      <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ilustrasi guest house di tepi sungai dengan perbukitan hutan di belakangnya">
         <rect width="800" height="400" fill="var(--sky)"/>
         <circle cx="660" cy="80" r="34" fill="var(--sun)"/>
         <path d="M0 230L120 110l110 90 120-120 150 140 110-70 190 110v140H0z" fill="var(--far)"/>
         <path d="M0 260q200-60 400-14t400-30v110H0z" fill="var(--near)"/>
-        <!-- pohon -->
         <rect x="70" y="190" width="10" height="90" fill="var(--roof)"/>
         <circle cx="75" cy="180" r="42" fill="var(--near)"/>
         <rect x="720" y="196" width="10" height="84" fill="var(--roof)"/>
         <circle cx="725" cy="186" r="38" fill="var(--near)"/>
-        <!-- guest house -->
         <rect x="230" y="190" width="340" height="94" fill="var(--wall)"/>
         <path d="M200 194L400 118l200 76-14 12H214z" fill="var(--roof)"/>
         <rect x="260" y="218" width="70" height="46" fill="var(--glass)"/>
-        <path d="M295 218v46M260 241h70" stroke="var(--wall)" stroke-width="4"/>
         <rect x="365" y="214" width="70" height="70" fill="var(--wood)"/>
         <rect x="470" y="218" width="70" height="46" fill="var(--glass)"/>
-        <path d="M505 218v46M470 241h70" stroke="var(--wall)" stroke-width="4"/>
         <rect x="232" y="194" width="8" height="90" fill="var(--roof)"/>
         <rect x="560" y="194" width="8" height="90" fill="var(--roof)"/>
-        <!-- deck dan sungai -->
         <rect y="284" width="800" height="14" fill="var(--roof)"/>
         <path d="M0 298h800v102H0z" fill="var(--glass)"/>
         <path d="M60 330q60-10 120 0M300 346q80-10 160 0M560 322q60-10 120 0M140 374q80-10 160 0M520 372q70-10 140 0" stroke="var(--wall)" stroke-width="4" fill="none" stroke-linecap="round" opacity=".75"/>
@@ -298,10 +348,10 @@ textarea { resize: vertical; min-height: 64px; }
     </div>
 
     <div class="facts">
-      <span><b>3</b> kamar Deluxe Double</span>
-      <span>Check-in <b>14.00</b></span>
-      <span>Check-out <b>12.00</b></span>
-      <span>Tepi <b>sungai Bukit Lawang</b></span>
+      <div><span>Lokasi</span><b>Tepi sungai Bukit Lawang</b></div>
+      <div><span>Tipe kamar</span><b>Standar &amp; Double Deluxe</b></div>
+      <div><span>Mulai dari</span><b>Rp 250.000 / malam</b></div>
+      <div><span>Parkir</span><b>Tersedia</b></div>
     </div>
   </section>
 
@@ -312,14 +362,30 @@ textarea { resize: vertical; min-height: 64px; }
           <span class="eyebrow">Tentang</span>
           <h2>Menginap dengan suara sungai</h2>
         </div>
-        <p class="lead">Rika's Place berdiri di tepi sungai Bukit Lawang. Dari kamar dan area duduk di luar, Anda langsung menghadap aliran sungai.</p>
-        <p>Hanya ada tiga kamar, jadi suasananya tenang dan pelayanannya personal. Cocok untuk pasangan, keluarga kecil, rombongan kecil yang datang untuk trekking, atau tim yang ingin rapat santai di luar ruangan.</p>
+        <p class="lead">Rika's Place berdiri di tepi sungai Bukit Lawang. Dari area duduk di luar, Anda langsung menghadap aliran sungai.</p>
+        <p>Guest house kecil dengan suasana tenang dan pelayanan personal. Cocok untuk pasangan, keluarga kecil, rombongan yang datang untuk trekking, atau tim yang ingin rapat santai di luar ruangan.</p>
       </div>
       <div class="chars" aria-label="Karakter guest house">
         <div><h3>Di tepi sungai</h3><p>Pemandangan langsung ke sungai Bukit Lawang Indah dari tempat Anda duduk.</p></div>
-        <div><h3>Kecil dan personal</h3><p>Tiga kamar saja. Tamu mudah dikenali dan dilayani dengan baik.</p></div>
+        <div><h3>Kecil dan personal</h3><p>Jumlah kamar terbatas, jadi tamu mudah dikenali dan dilayani dengan baik.</p></div>
         <div><h3>Santai dan praktis</h3><p>Area duduk outdoor bisa dipakai untuk bersantai atau meeting kecil.</p></div>
       </div>
+    </div>
+  </section>
+
+  <section id="suasana">
+    <div class="sec-head">
+      <span class="eyebrow">Suasana</span>
+      <h2>Dari berbagai sudut</h2>
+      <p>Ketuk foto untuk memperbesar.</p>
+    </div>
+    <div class="gal" id="gal">
+      <figure class="tile" data-ph="images/sekitar-1" data-group="suasana" data-fb="s-river" data-alt="Suasana sekitar Rika's Place" hidden><div class="pic"></div></figure>
+      <figure class="tile" data-ph="images/sekitar-2" data-group="suasana" data-fb="s-meet" data-alt="Suasana sekitar Rika's Place" hidden><div class="pic"></div></figure>
+      <figure class="tile" data-ph="images/sekitar-3" data-group="suasana" data-fb="s-bed" data-alt="Suasana sekitar Rika's Place" hidden><div class="pic"></div></figure>
+      <figure class="tile" data-ph="images/sekitar-4" data-group="suasana" data-alt="Suasana sekitar Rika's Place" hidden><div class="pic"></div></figure>
+      <figure class="tile" data-ph="images/sekitar-5" data-group="suasana" data-alt="Suasana sekitar Rika's Place" hidden><div class="pic"></div></figure>
+      <figure class="tile" data-ph="images/sekitar-6" data-group="suasana" data-alt="Suasana sekitar Rika's Place" hidden><div class="pic"></div></figure>
     </div>
   </section>
 
@@ -329,36 +395,51 @@ textarea { resize: vertical; min-height: 64px; }
       <h2>Yang Anda dapatkan</h2>
     </div>
     <ul class="fac">
-      <li><span>Kamar mandi bersih</span><span>Di dalam kamar</span></li>
-      <li><span>Area duduk outdoor</span><span>Untuk meeting &amp; santai</span></li>
-      <li><span>Pemandangan sungai</span><span>Langsung dari kamar</span></li>
-      <li><span>Air panas</span><span>Water heater</span></li>
-      <li><span>Wi-Fi</span><span>Seluruh area</span></li>
-      <li><span>Parkir</span><span>Halaman guest house</span></li>
+      <li><b>Kamar mandi bersih</b><span>Bersih dan nyaman untuk tamu.</span></li>
+      <li><b>Area duduk outdoor</b><span>Tempat santai atau meeting kecil.</span></li>
+      <li><b>Pemandangan sungai</b><span>Menghadap sungai Bukit Lawang Indah.</span></li>
+      <li><b>Parkir</b><span>Tersedia untuk tamu.</span></li>
     </ul>
   </section>
 
   <section id="kamar">
     <div class="sec-head">
       <span class="eyebrow">Kamar</span>
-      <h2>Deluxe Double</h2>
+      <h2>Pilih kamar</h2>
+      <p>Geser foto ke samping untuk melihat tempat tidur, kamar mandi, dan sudut lain kamar.</p>
     </div>
 
-    <article class="room" aria-labelledby="r-deluxe">
-      <div class="gallery" tabindex="0" aria-label="Foto kamar Deluxe Double">
-        <figure class="shot"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-bed"/></svg></div><figcaption>Tempat tidur double</figcaption></figure>
-        <figure class="shot"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-bath"/></svg></div><figcaption>Kamar mandi bersih</figcaption></figure>
-        <figure class="shot"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-meet"/></svg></div><figcaption>Area duduk outdoor untuk meeting</figcaption></figure>
-        <figure class="shot"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-river"/></svg></div><figcaption>Pemandangan sungai</figcaption></figure>
-      </div>
-      <div class="info">
-        <h3 id="r-deluxe">Kamar Deluxe Double</h3>
-        <p class="price"><b>Rp 350.000</b> <span>/ malam</span></p>
-        <p class="desc">Tempat tidur double yang luas dengan kamar mandi bersih di dalam kamar. Tersedia 3 kamar, semuanya menghadap sungai.</p>
-        <ul class="tags"><li>3 kamar tersedia</li><li>1 tempat tidur double</li><li>Maks. 2 tamu per kamar</li><li>Kamar mandi dalam</li></ul>
-        <button class="btn" type="button" id="bookBtn">Reservasi kamar</button>
-      </div>
-    </article>
+    <div class="rooms">
+      <article class="room" aria-labelledby="r-standar">
+        <div class="gallery" tabindex="0" aria-label="Foto kamar Standar Deluxe">
+          <figure class="shot" data-ph="images/kamar-standar-1" data-group="standar" data-alt="Kamar Standar Deluxe"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-bed"/></svg></div><figcaption>Tempat tidur</figcaption></figure>
+          <figure class="shot" data-ph="images/kamar-standar-2" data-group="standar" data-alt="Kamar mandi Standar Deluxe"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-bath"/></svg></div><figcaption>Kamar mandi</figcaption></figure>
+          <figure class="shot" data-ph="images/kamar-standar-3" data-group="standar" data-alt="Sudut lain Kamar Standar Deluxe"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-river"/></svg></div><figcaption>Sudut lain</figcaption></figure>
+        </div>
+        <div class="room-head">
+          <h3 id="r-standar">Standar Deluxe</h3>
+          <p class="price"><b>Rp 250.000</b> <span>/ malam</span></p>
+        </div>
+        <p class="desc">Kamar sederhana, bersih, dan nyaman untuk menginap dengan pemandangan sungai Bukit Lawang.</p>
+        <ul class="tags"><li>Maks. 2 tamu</li><li>Kamar mandi bersih</li><li>Parkir</li></ul>
+        <button class="btn" type="button" data-open="standar">Pesan Standar Deluxe</button>
+      </article>
+
+      <article class="room" aria-labelledby="r-double">
+        <div class="gallery" tabindex="0" aria-label="Foto kamar Double Deluxe">
+          <figure class="shot" data-ph="images/kamar-double-1" data-group="double" data-alt="Kamar Double Deluxe"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-bed"/></svg></div><figcaption>Tempat tidur</figcaption></figure>
+          <figure class="shot" data-ph="images/kamar-double-2" data-group="double" data-alt="Kamar mandi Double Deluxe"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-bath"/></svg></div><figcaption>Kamar mandi</figcaption></figure>
+          <figure class="shot" data-ph="images/kamar-double-3" data-group="double" data-alt="Sudut lain Kamar Double Deluxe"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-meet"/></svg></div><figcaption>Sudut lain</figcaption></figure>
+        </div>
+        <div class="room-head">
+          <h3 id="r-double">Double Deluxe</h3>
+          <p class="price"><b>Rp 300.000</b> <span>/ malam</span></p>
+        </div>
+        <p class="desc">Pilihan dengan tempat tidur double, cocok untuk pasangan atau dua orang yang ingin ruang lebih nyaman.</p>
+        <ul class="tags"><li>Maks. 2 tamu</li><li>Tempat tidur double</li><li>Kamar mandi bersih</li><li>Parkir</li></ul>
+        <button class="btn" type="button" data-open="double">Pesan Double Deluxe</button>
+      </article>
+    </div>
   </section>
 
   <section id="sekitar">
@@ -379,159 +460,293 @@ textarea { resize: vertical; min-height: 64px; }
     <div>
       <span class="eyebrow">Kontak</span>
       <h2>Tanya atau pesan langsung</h2>
-      <p style="margin-top:12px;max-width:40ch;opacity:.8">Admin membalas pukul 07.00–21.00 WIB.</p>
+      <p style="margin-top:12px;max-width:40ch;opacity:.8">Chat admin lewat WhatsApp untuk cek ketersediaan kamar.</p>
     </div>
     <div class="list">
-      <div><span class="eyebrow">WhatsApp</span><span class="num" id="waShow">+62 812-3456-7890</span></div>
-      <a class="out" id="waOpen" href="https://wa.me/6281234567890" target="_blank" rel="noopener">Chat di WhatsApp</a>
-      <div><span class="eyebrow">Instagram</span><a class="out" href="https://instagram.com/rikasplace.bukitlawang" target="_blank" rel="noopener">@rikasplace.bukitlawang</a></div>
+      <div><span class="eyebrow">WhatsApp</span><span class="num">+62 813-7055-4548</span></div>
+      <a class="out" id="waOpen" href="https://wa.me/6281370554548" target="_blank" rel="noopener">Chat di WhatsApp</a>
+      <div id="igRow" hidden><span class="eyebrow">Instagram</span><a class="out" id="igLink" href="#" target="_blank" rel="noopener"></a></div>
     </div>
     <div class="list">
       <div><span class="eyebrow">Alamat</span><p>Tepi sungai Bukit Lawang, Kec. Bahorok, Kab. Langkat, Sumatera Utara</p></div>
-      <div><span class="eyebrow">Email</span><span class="num">halo@rikasplace.example</span></div>
+      <a class="out" href="https://www.google.com/maps/search/?api=1&amp;query=Rika%27s+Place+Bukit+Lawang" target="_blank" rel="noopener">Buka di Google Maps</a>
     </div>
   </div>
-  <div class="wrap"><small>© 2026 Rika's Place Guest House. Halaman contoh, nomor, harga, dan gambar masih ilustrasi.</small></div>
+  <div class="wrap"><small>© 2026 Rika's Place Guest House</small></div>
 </footer>
+
+<a class="fab" id="fab" href="https://wa.me/6281370554548" target="_blank" rel="noopener">Chat WhatsApp</a>
 
 <div class="overlay" id="overlay" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="mTitle">
     <div class="sheet-top">
       <div>
         <span class="eyebrow">Reservasi</span>
-        <h2 id="mTitle">Kamar Deluxe Double</h2>
+        <h2 id="mTitle">Isi data pemesanan</h2>
       </div>
       <button class="x" type="button" id="mClose" aria-label="Tutup">✕</button>
     </div>
 
     <form id="form" novalidate>
-      <div class="row">
-        <div class="field full">
-          <label for="fName">Nama lengkap</label>
-          <input id="fName" name="name" type="text" autocomplete="name" placeholder="Nama Anda" required>
+      <fieldset>
+        <legend>Tipe kamar</legend>
+        <div class="types">
+          <label class="type"><input type="radio" name="type" value="standar" checked><span><b>Standar Deluxe</b><small>Rp 250.000 / malam</small></span></label>
+          <label class="type"><input type="radio" name="type" value="double"><span><b>Double Deluxe</b><small>Rp 300.000 / malam</small></span></label>
         </div>
-        <div class="field full">
-          <label for="fDate">Tanggal check-in</label>
-          <input id="fDate" name="date" type="date" required>
-        </div>
-        <div class="field">
-          <label for="fNights">Lama menginap (malam)</label>
-          <input id="fNights" name="nights" type="number" min="1" max="30" inputmode="numeric" required>
-        </div>
-        <div class="field">
-          <label for="fRooms">Jumlah kamar</label>
-          <input id="fRooms" name="rooms" type="number" min="1" max="3" inputmode="numeric" required>
-          <span class="hint">Tersedia 3 kamar</span>
-        </div>
-        <div class="field full">
-          <label for="fGuests">Jumlah tamu</label>
-          <input id="fGuests" name="guests" type="number" min="1" inputmode="numeric" required>
-          <span class="hint" id="gHint"></span>
-        </div>
-        <div class="field full">
-          <label for="fNote">Catatan (opsional)</label>
-          <textarea id="fNote" name="note" placeholder="Contoh: datang sekitar pukul 16.00"></textarea>
-        </div>
+      </fieldset>
+
+      <div class="field">
+        <label class="lb" for="fName">Nama lengkap</label>
+        <input id="fName" name="name" type="text" autocomplete="name" placeholder="Nama Anda" aria-describedby="eName">
+        <p class="err" id="eName" role="alert" hidden>Isi nama Anda dulu.</p>
       </div>
 
-      <div class="total" style="margin-top:16px">
-        <span>Perkiraan total</span>
-        <b id="total">Rp 0</b>
+      <div class="field">
+        <label class="lb" for="fDate">Tanggal check-in</label>
+        <input id="fDate" name="date" type="date" aria-describedby="eDate">
+        <p class="err" id="eDate" role="alert" hidden>Pilih tanggal check-in.</p>
       </div>
 
-      <div style="display:grid;gap:12px;margin-top:16px">
-        <a class="btn" id="waLink" href="#" target="_blank" rel="noopener">Lanjut ke WhatsApp</a>
-        <p class="hint">Anda akan diarahkan ke WhatsApp admin dengan pesan reservasi yang sudah terisi. Reservasi baru pasti setelah admin membalas.</p>
-        <p class="done" id="done" hidden>WhatsApp dibuka di tab baru. Kirim pesannya agar admin bisa memproses reservasi Anda. Jika tidak terbuka, hubungi <span class="num" id="waAlt"></span>.</p>
+      <div class="steps">
+        <div class="field">
+          <span class="lb" id="lNights">Malam</span>
+          <div class="stepper" role="group" aria-labelledby="lNights">
+            <button type="button" data-t="nights" data-d="-1" aria-label="Kurangi malam">−</button>
+            <output id="vNights">1</output>
+            <button type="button" data-t="nights" data-d="1" aria-label="Tambah malam">+</button>
+          </div>
+        </div>
+        <div class="field">
+          <span class="lb" id="lRooms">Kamar</span>
+          <div class="stepper" role="group" aria-labelledby="lRooms">
+            <button type="button" data-t="rooms" data-d="-1" aria-label="Kurangi kamar">−</button>
+            <output id="vRooms">1</output>
+            <button type="button" data-t="rooms" data-d="1" aria-label="Tambah kamar">+</button>
+          </div>
+        </div>
+        <div class="field">
+          <span class="lb" id="lGuests">Tamu</span>
+          <div class="stepper" role="group" aria-labelledby="lGuests">
+            <button type="button" data-t="guests" data-d="-1" aria-label="Kurangi tamu">−</button>
+            <output id="vGuests">2</output>
+            <button type="button" data-t="guests" data-d="1" aria-label="Tambah tamu">+</button>
+          </div>
+        </div>
       </div>
+      <p class="hint" id="gHint" style="margin-top:-8px"></p>
+
+      <div class="field">
+        <label class="lb" for="fNote">Catatan (opsional)</label>
+        <textarea id="fNote" name="note" placeholder="Contoh: datang sekitar pukul 16.00"></textarea>
+      </div>
+
+      <div class="out-line"><span>Check-out</span><b id="vOut">-</b></div>
+
+      <div class="preview" aria-live="polite">
+        <h3>Pesan yang akan dikirim ke admin</h3>
+        <pre id="msg"></pre>
+      </div>
+
+      <div class="total"><span>Perkiraan total</span><b id="total">Rp 0</b></div>
+
+      <a class="btn send" id="waLink" href="#" target="_blank" rel="noopener">Kirim lewat WhatsApp</a>
+      <p class="done" id="done">Pesan akan terisi otomatis di WhatsApp admin. Tinggal tekan kirim. Reservasi pasti setelah admin membalas.</p>
     </form>
   </div>
 </div>
 
+<div class="lbx" id="lbx" hidden role="dialog" aria-modal="true" aria-label="Foto diperbesar">
+  <button class="c" type="button" id="lbC" aria-label="Tutup">✕</button>
+  <button class="p" type="button" id="lbP" aria-label="Foto sebelumnya">‹</button>
+  <img id="lbI" alt="">
+  <button class="n" type="button" id="lbN" aria-label="Foto berikutnya">›</button>
+  <p id="lbT"></p>
+</div>
+
 <script>
 (function () {
-  // Ganti nomor admin (format internasional, tanpa + dan tanpa 0 di depan)
-  var WA = "6281234567890";
-  var PRICE = 350000, PER_ROOM = 2, TOTAL_ROOMS = 3;
+  /* ===== Pengaturan: ubah di sini ===== */
+  var CFG = {
+    wa: "6281370554548",       // nomor admin, format 62 tanpa + dan tanpa 0
+    ig: "",                    // isi username Instagram tanpa @, kosongkan jika belum ada
+    maxRooms: 3,               // batas kamar per pemesanan
+    types: {
+      standar: { name: "Standar Deluxe", price: 250000, perRoom: 2 },
+      double:  { name: "Double Deluxe",  price: 300000, perRoom: 2 }
+    }
+  };
   var $ = function (id) { return document.getElementById(id); };
-  var overlay = $("overlay"), form = $("form"), link = $("waLink");
-
+  var all = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
   var rp = function (n) { return "Rp " + n.toLocaleString("id-ID"); };
+
+  if (CFG.ig) {
+    $("igRow").hidden = false;
+    $("igLink").href = "https://instagram.com/" + CFG.ig;
+    $("igLink").textContent = "@" + CFG.ig;
+  }
+
+  /* ===== Foto: cari images/<nama>.jpg/.jpeg/.png/.webp ===== */
+  var EXT = ["jpg", "jpeg", "png", "webp"];
+  function probe(base) {
+    return new Promise(function (res) {
+      var i = 0;
+      (function next() {
+        if (i >= EXT.length) return res(null);
+        var u = base + "." + EXT[i++], im = new Image();
+        im.onload = function () { res(u); };
+        im.onerror = next;
+        im.src = u;
+      })();
+    });
+  }
+  var jobs = all("[data-ph]").map(function (el) {
+    return probe(el.getAttribute("data-ph")).then(function (u) {
+      if (!u) return;
+      var box = el.querySelector(".pic") || el;
+      var im = document.createElement("img");
+      im.src = u; im.alt = el.getAttribute("data-alt") || ""; im.decoding = "async";
+      if (!el.hasAttribute("data-eager")) im.loading = "lazy";
+      box.innerHTML = ""; box.appendChild(im);
+      el.setAttribute("data-src", u);
+      el.classList.add("has-photo");
+      if (el.classList.contains("tile")) el.hidden = false;
+    });
+  });
+  Promise.all(jobs).then(function () {
+    // Bila belum ada foto suasana sama sekali, tampilkan contoh ilustrasi
+    if (!all(".tile.has-photo").length) {
+      all(".tile[data-fb]").forEach(function (t) {
+        t.querySelector(".pic").innerHTML = '<svg viewBox="0 0 400 300" aria-hidden="true"><use href="#' + t.getAttribute("data-fb") + '"/></svg>';
+        var c = document.createElement("figcaption"); c.className = "ex"; c.textContent = "Contoh";
+        t.appendChild(c); t.hidden = false;
+      });
+    }
+  });
+
+  /* ===== Lightbox ===== */
+  var lb = $("lbx"), grp = [], gi = 0;
+  function showLb() {
+    var el = grp[gi];
+    $("lbI").src = el.getAttribute("data-src");
+    $("lbI").alt = el.getAttribute("data-alt") || "";
+    $("lbT").textContent = (el.getAttribute("data-alt") || "") + "  ·  " + (gi + 1) + "/" + grp.length;
+    $("lbP").hidden = $("lbN").hidden = grp.length < 2;
+  }
+  function openLb(el) {
+    var g = el.getAttribute("data-group");
+    grp = all('[data-group="' + g + '"].has-photo');
+    gi = Math.max(0, grp.indexOf(el));
+    lb.hidden = false; document.body.style.overflow = "hidden"; showLb(); $("lbC").focus();
+  }
+  function closeLb() { lb.hidden = true; if ($("overlay").hidden) document.body.style.overflow = ""; }
+  function step(d) { gi = (gi + d + grp.length) % grp.length; showLb(); }
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest && e.target.closest(".has-photo[data-group]");
+    if (el) openLb(el);
+  });
+  $("lbC").addEventListener("click", closeLb);
+  $("lbP").addEventListener("click", function () { step(-1); });
+  $("lbN").addEventListener("click", function () { step(1); });
+  lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
+
+  /* ===== Reservasi ===== */
+  var overlay = $("overlay"), link = $("waLink"), opener = null;
+  var S = { nights: 1, rooms: 1, guests: 2 };
+  var LIM = { nights: [1, 30], rooms: [1, CFG.maxRooms], guests: [1, 99] };
+
   function pad(n) { return String(n).padStart(2, "0"); }
   function ymd(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
-  function fmtDate(v) {
-    var p = v.split("-");
-    return new Date(+p[0], +p[1] - 1, +p[2]).toLocaleDateString("id-ID", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
-  }
-  function maxGuests() {
-    var r = Math.min(TOTAL_ROOMS, Math.max(1, parseInt($("fRooms").value, 10) || 1));
-    return r * PER_ROOM;
-  }
+  function parse(v) { var p = v.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function fmt(d) { return d.toLocaleDateString("id-ID", { weekday: "long", day: "numeric", month: "long", year: "numeric" }); }
+  function curType() { return CFG.types[form.elements.type.value]; }
+  var form = $("form");
 
-  $("waShow").textContent = "+" + WA.replace(/^(\d{2})(\d{3})(\d{4})(\d+)$/, "$1 $2-$3-$4");
-  $("waOpen").href = "https://wa.me/" + WA;
-  $("waAlt").textContent = $("waShow").textContent;
+  function clamp() {
+    LIM.guests[1] = S.rooms * curType().perRoom;
+    ["nights", "rooms", "guests"].forEach(function (k) {
+      S[k] = Math.min(LIM[k][1], Math.max(LIM[k][0], S[k]));
+      $("v" + k.charAt(0).toUpperCase() + k.slice(1)).textContent = S[k];
+    });
+    $("gHint").textContent = "Maksimal " + LIM.guests[1] + " tamu untuk " + S.rooms + " kamar (" + curType().perRoom + " tamu per kamar).";
+  }
 
   function build() {
-    var nights = Math.max(1, parseInt($("fNights").value, 10) || 1);
-    var rooms = Math.min(TOTAL_ROOMS, Math.max(1, parseInt($("fRooms").value, 10) || 1));
-    var total = PRICE * nights * rooms;
-    $("fGuests").max = maxGuests();
-    $("gHint").textContent = "Maksimal " + maxGuests() + " orang untuk " + rooms + " kamar";
+    clamp();
+    var t = curType(), total = t.price * S.nights * S.rooms;
+    var date = $("fDate").value, inD = date ? parse(date) : null, outD = null;
+    if (inD) { outD = new Date(inD); outD.setDate(outD.getDate() + S.nights); }
+    $("vOut").textContent = outD ? fmt(outD) : "-";
     $("total").textContent = rp(total);
-    var msg = [
+    var lines = [
       "Halo Admin Rika's Place, saya ingin reservasi:",
       "",
       "Nama: " + ($("fName").value.trim() || "-"),
-      "Kamar: Deluxe Double x " + rooms,
-      "Check-in: " + ($("fDate").value ? fmtDate($("fDate").value) : "-"),
-      "Lama menginap: " + ($("fNights").value || "-") + " malam",
-      "Jumlah tamu: " + ($("fGuests").value || "-") + " orang",
-      "Perkiraan total: " + rp(total)
+      "Tipe kamar: " + t.name + " x " + S.rooms,
+      "Check-in: " + (inD ? fmt(inD) : "-"),
+      "Check-out: " + (outD ? fmt(outD) : "-"),
+      "Lama menginap: " + S.nights + " malam",
+      "Jumlah tamu: " + S.guests + " orang",
+      "Perkiraan total: " + rp(total) + " (" + rp(t.price) + " x " + S.nights + " malam x " + S.rooms + " kamar)"
     ];
     var note = $("fNote").value.trim();
-    if (note) msg.push("Catatan: " + note);
-    msg.push("", "Mohon info ketersediaannya. Terima kasih.");
-    link.href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg.join("\n"));
+    if (note) lines.push("Catatan: " + note);
+    lines.push("", "Mohon info ketersediaannya. Terima kasih.");
+    var text = lines.join("\n");
+    $("msg").textContent = text;
+    link.href = "https://wa.me/" + CFG.wa + "?text=" + encodeURIComponent(text);
   }
 
-  function open() {
+  function openModal(type, btn) {
+    opener = btn || null;
     var t = new Date(); t.setDate(t.getDate() + 1);
     $("fDate").min = ymd(new Date());
-    $("fDate").value = ymd(t);
-    $("fNights").value = 1;
-    $("fRooms").value = 1;
-    $("fGuests").value = 2;
-    $("done").hidden = true;
-    overlay.hidden = false;
-    document.body.style.overflow = "hidden";
+    if (!$("fDate").value) $("fDate").value = ymd(t);
+    form.elements.type.value = type || "standar";
+    all("[role=alert]").forEach(function (e) { e.hidden = true; });
+    overlay.hidden = false; document.body.style.overflow = "hidden";
     build();
     $("fName").focus();
   }
-  function close() {
-    overlay.hidden = true;
-    document.body.style.overflow = "";
-    $("bookBtn").focus();
+  function closeModal() {
+    overlay.hidden = true; document.body.style.overflow = "";
+    if (opener) opener.focus();
   }
 
-  $("bookBtn").addEventListener("click", open);
-  $("mClose").addEventListener("click", close);
-  overlay.addEventListener("click", function (e) { if (e.target === overlay) close(); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !overlay.hidden) close(); });
+  all("[data-open]").forEach(function (b) {
+    b.addEventListener("click", function (e) { e.preventDefault(); openModal(b.getAttribute("data-open"), b); });
+  });
+  $("mClose").addEventListener("click", closeModal);
+  overlay.addEventListener("click", function (e) { if (e.target === overlay) closeModal(); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") { if (!lb.hidden) closeLb(); else if (!overlay.hidden) closeModal(); }
+    if (!lb.hidden && grp.length > 1) { if (e.key === "ArrowRight") step(1); if (e.key === "ArrowLeft") step(-1); }
+  });
+  all(".stepper button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      S[b.getAttribute("data-t")] += +b.getAttribute("data-d");
+      build();
+    });
+  });
   form.addEventListener("input", build);
+  form.addEventListener("change", build);
   form.addEventListener("submit", function (e) { e.preventDefault(); });
 
   link.addEventListener("click", function (e) {
     build();
-    if (!form.checkValidity()) {
+    var okName = $("fName").value.trim().length > 0;
+    var okDate = !!$("fDate").value && $("fDate").value >= ymd(new Date());
+    $("eName").hidden = okName;
+    $("eDate").hidden = okDate;
+    $("eDate").textContent = $("fDate").value ? "Tanggal check-in tidak boleh sebelum hari ini." : "Pilih tanggal check-in.";
+    if (!okName || !okDate) {
       e.preventDefault();
-      form.reportValidity();
-      return;
+      (okName ? $("fDate") : $("fName")).focus();
     }
-    $("done").hidden = false;
   });
+
+  $("fab").addEventListener("click", function () {});
 })();
 </script>
-
 </body>
 </html>
