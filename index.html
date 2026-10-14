@@ -121,6 +121,8 @@ section { padding-block: 64px 0; }
 .gal { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); }
 @media (min-width: 700px) { .gal { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; } }
 .tile { margin: 0; position: relative; }
+.gal.single .tile { grid-column: 1 / -1; }
+.gal.single .tile .pic { aspect-ratio: 16 / 9; }
 .tile .pic { aspect-ratio: 4 / 3; border-radius: 4px; overflow: hidden; background: var(--surface); }
 .tile.has-photo, .shot.has-photo { cursor: zoom-in; }
 .tile.has-photo:hover img, .shot.has-photo:hover img { filter: brightness(.92); }
@@ -324,7 +326,7 @@ textarea { resize: vertical; min-height: 60px; }
       </div>
     </div>
 
-    <div class="hero-img" data-ph="images/depan" data-alt="Tampak depan Rika's Place Guest House" data-eager>
+    <div class="hero-img" data-ph="VID-20261014-WA0059" data-alt="Tampak depan Rika's Place Guest House" data-eager>
       <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ilustrasi guest house di tepi sungai dengan perbukitan hutan di belakangnya">
         <rect width="800" height="400" fill="var(--sky)"/>
         <circle cx="660" cy="80" r="34" fill="var(--sun)"/>
@@ -367,7 +369,7 @@ textarea { resize: vertical; min-height: 60px; }
       </div>
       <div class="chars" aria-label="Karakter guest house">
         <div><h3>Di tepi sungai</h3><p>Pemandangan langsung ke sungai Bukit Lawang Indah dari tempat Anda duduk.</p></div>
-        <div><h3>Kecil dan personal</h3><p>Jumlah kamar terbatas, jadi tamu mudah dikenali dan dilayani dengan baik.</p></div>
+        <div><h3>Kecil dan personal</h3><p>Hanya 3 kamar, jadi tamu mudah dikenali dan dilayani dengan baik.</p></div>
         <div><h3>Santai dan praktis</h3><p>Area duduk outdoor bisa dipakai untuk bersantai atau meeting kecil.</p></div>
       </div>
     </div>
@@ -380,7 +382,7 @@ textarea { resize: vertical; min-height: 60px; }
       <p>Ketuk foto untuk memperbesar.</p>
     </div>
     <div class="gal" id="gal">
-      <figure class="tile" data-ph="images/sekitar-1" data-group="suasana" data-fb="s-river" data-alt="Suasana sekitar Rika's Place" hidden><div class="pic"></div></figure>
+      <figure class="tile" data-ph="IMG-20261014-WA0066" data-group="suasana" data-fb="s-river" data-alt="Area duduk outdoor menghadap sungai" hidden><div class="pic"></div></figure>
       <figure class="tile" data-ph="images/sekitar-2" data-group="suasana" data-fb="s-meet" data-alt="Suasana sekitar Rika's Place" hidden><div class="pic"></div></figure>
       <figure class="tile" data-ph="images/sekitar-3" data-group="suasana" data-fb="s-bed" data-alt="Suasana sekitar Rika's Place" hidden><div class="pic"></div></figure>
       <figure class="tile" data-ph="images/sekitar-4" data-group="suasana" data-alt="Suasana sekitar Rika's Place" hidden><div class="pic"></div></figure>
@@ -412,7 +414,7 @@ textarea { resize: vertical; min-height: 60px; }
     <div class="rooms">
       <article class="room" aria-labelledby="r-standar">
         <div class="gallery" tabindex="0" aria-label="Foto kamar Standar Deluxe">
-          <figure class="shot" data-ph="images/kamar-standar-1" data-group="standar" data-alt="Kamar Standar Deluxe"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-bed"/></svg></div><figcaption>Tempat tidur</figcaption></figure>
+          <figure class="shot" data-ph="IMG-20261014-WA0065" data-group="standar" data-alt="Kamar Standar Deluxe"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-bed"/></svg></div><figcaption>Tempat tidur</figcaption></figure>
           <figure class="shot" data-ph="images/kamar-standar-2" data-group="standar" data-alt="Kamar mandi Standar Deluxe"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-bath"/></svg></div><figcaption>Kamar mandi</figcaption></figure>
           <figure class="shot" data-ph="images/kamar-standar-3" data-group="standar" data-alt="Sudut lain Kamar Standar Deluxe"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-river"/></svg></div><figcaption>Sudut lain</figcaption></figure>
         </div>
@@ -421,14 +423,14 @@ textarea { resize: vertical; min-height: 60px; }
           <p class="price"><b>Rp 250.000</b> <span>/ malam</span></p>
         </div>
         <p class="desc">Kamar sederhana, bersih, dan nyaman untuk menginap dengan pemandangan sungai Bukit Lawang.</p>
-        <ul class="tags"><li>Maks. 2 tamu</li><li>Kamar mandi bersih</li><li>Parkir</li></ul>
+        <ul class="tags"><li>1 kamar</li><li>Maks. 2 tamu</li><li>Kamar mandi bersih</li><li>Parkir</li></ul>
         <button class="btn" type="button" data-open="standar">Pesan Standar Deluxe</button>
       </article>
 
       <article class="room" aria-labelledby="r-double">
         <div class="gallery" tabindex="0" aria-label="Foto kamar Double Deluxe">
-          <figure class="shot" data-ph="images/kamar-double-1" data-group="double" data-alt="Kamar Double Deluxe"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-bed"/></svg></div><figcaption>Tempat tidur</figcaption></figure>
-          <figure class="shot" data-ph="images/kamar-double-2" data-group="double" data-alt="Kamar mandi Double Deluxe"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-bath"/></svg></div><figcaption>Kamar mandi</figcaption></figure>
+          <figure class="shot" data-ph="IMG-20261014-WA0060" data-group="double" data-alt="Kamar Double Deluxe"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-bed"/></svg></div><figcaption>Tempat tidur</figcaption></figure>
+          <figure class="shot" data-ph="IMG-20261014-WA0061" data-group="double" data-alt="Kamar Double Deluxe dari sudut lain"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-bath"/></svg></div><figcaption>Sudut lain kamar</figcaption></figure>
           <figure class="shot" data-ph="images/kamar-double-3" data-group="double" data-alt="Sudut lain Kamar Double Deluxe"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-meet"/></svg></div><figcaption>Sudut lain</figcaption></figure>
         </div>
         <div class="room-head">
@@ -436,7 +438,7 @@ textarea { resize: vertical; min-height: 60px; }
           <p class="price"><b>Rp 300.000</b> <span>/ malam</span></p>
         </div>
         <p class="desc">Pilihan dengan tempat tidur double, cocok untuk pasangan atau dua orang yang ingin ruang lebih nyaman.</p>
-        <ul class="tags"><li>Maks. 2 tamu</li><li>Tempat tidur double</li><li>Kamar mandi bersih</li><li>Parkir</li></ul>
+        <ul class="tags"><li>2 kamar</li><li>Maks. 2 tamu</li><li>Tempat tidur double</li><li>Kamar mandi bersih</li><li>Parkir</li></ul>
         <button class="btn" type="button" data-open="double">Pesan Double Deluxe</button>
       </article>
     </div>
@@ -572,8 +574,8 @@ textarea { resize: vertical; min-height: 60px; }
     ig: "",                    // isi username Instagram tanpa @, kosongkan jika belum ada
     maxRooms: 3,               // batas kamar per pemesanan
     types: {
-      standar: { name: "Standar Deluxe", price: 250000, perRoom: 2 },
-      double:  { name: "Double Deluxe",  price: 300000, perRoom: 2 }
+      standar: { name: "Standar Deluxe", price: 250000, perRoom: 2, rooms: 1 },
+      double:  { name: "Double Deluxe",  price: 300000, perRoom: 2, rooms: 2 }
     }
   };
   var $ = function (id) { return document.getElementById(id); };
@@ -614,6 +616,14 @@ textarea { resize: vertical; min-height: 60px; }
     });
   });
   Promise.all(jobs).then(function () {
+    // Kamar yang sudah punya foto asli: sembunyikan slot ilustrasi yang masih kosong
+    ["standar", "double"].forEach(function (g) {
+      var s = all('.shot[data-group="' + g + '"]');
+      if (s.some(function (x) { return x.classList.contains("has-photo"); })) {
+        s.forEach(function (x) { if (!x.classList.contains("has-photo")) x.hidden = true; });
+      }
+    });
+    if (all(".tile.has-photo").length === 1) $("gal").classList.add("single");
     // Bila belum ada foto suasana sama sekali, tampilkan contoh ilustrasi
     if (!all(".tile.has-photo").length) {
       all(".tile[data-fb]").forEach(function (t) {
@@ -663,12 +673,14 @@ textarea { resize: vertical; min-height: 60px; }
   var form = $("form");
 
   function clamp() {
+    LIM.rooms[1] = curType().rooms;
+    S.rooms = Math.min(LIM.rooms[1], Math.max(1, S.rooms));
     LIM.guests[1] = S.rooms * curType().perRoom;
     ["nights", "rooms", "guests"].forEach(function (k) {
       S[k] = Math.min(LIM[k][1], Math.max(LIM[k][0], S[k]));
       $("v" + k.charAt(0).toUpperCase() + k.slice(1)).textContent = S[k];
     });
-    $("gHint").textContent = "Maksimal " + LIM.guests[1] + " tamu untuk " + S.rooms + " kamar (" + curType().perRoom + " tamu per kamar).";
+    $("gHint").textContent = curType().name + " tersedia " + curType().rooms + " kamar. Maksimal " + LIM.guests[1] + " tamu untuk " + S.rooms + " kamar (" + curType().perRoom + " tamu per kamar).";
   }
 
   function build() {
