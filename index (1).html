@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Rika's Place Guest House, penginapan di tepi sungai Bukit Lawang. 3 kamar Deluxe Double.">
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Rika's Place Guest House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: satu halaman, kolom 1080px. Hero nama + foto sungai, tentang, fasilitas, kamar deluxe (galeri), sekitar, kontak hitam. */
+:root {
+  --bg: #FFFFFF;
+  --surface: #F7F2EC;
+  --fg: #141210;
+  --muted: #61584F;
+  --line: #E6DDD2;
+  --btn: #A8561A;
+  --btn-fg: #FFFFFF;
+  --accent: #A8561A;
+  --foot-bg: #141210; --foot-fg: #FFFFFF; --foot-accent: #E3984D;
+  --sky: #F3ECE3; --far: #D8C2A8; --near: #8A5A34; --wall: #FFFFFF;
+  --roof: #1A1714; --wood: #C2813F; --glass: #D5D9D8; --sun: #E3A55E;
+  --font-display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F0E0D; --surface: #1A1816; --fg: #F5F1EC; --muted: #A99F95; --line: #2E2A26;
+    --btn: #E3984D; --btn-fg: #141210; --accent: #E3984D;
+    --foot-bg: #1A1816; --foot-fg: #F5F1EC; --foot-accent: #E3984D;
+    --sky: #231E19; --far: #3A2F25; --near: #5A4330; --wall: #E8E2D9;
+    --roof: #0A0908; --wood: #C58236; --glass: #4A4F50; --sun: #D9873A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F0E0D; --surface: #1A1816; --fg: #F5F1EC; --muted: #A99F95; --line: #2E2A26;
+  --btn: #E3984D; --btn-fg: #141210; --accent: #E3984D;
+  --foot-bg: #1A1816; --foot-fg: #F5F1EC; --foot-accent: #E3984D;
+  --sky: #231E19; --far: #3A2F25; --near: #5A4330; --wall: #E8E2D9;
+  --roof: #0A0908; --wood: #C58236; --glass: #4A4F50; --sun: #D9873A;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  padding-inline: 16px;
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.1; margin: 0; text-wrap: balance; letter-spacing: -.015em; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.wrap { max-width: 1080px; margin-inline: auto; }
+.eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+
+/* header */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: var(--bg); border-bottom: 1px solid var(--line);
+  margin-inline: -16px; padding-inline: 16px;
+}
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+.brand { font-family: var(--font-display); font-weight: 700; font-size: 20px; text-decoration: none; letter-spacing: -.01em; }
+.top nav { display: flex; gap: 20px; font-size: 14px; font-weight: 500; }
+.top nav a { text-decoration: none; color: var(--muted); }
+.top nav a:hover { color: var(--fg); }
+@media (max-width: 480px) { .top nav a:first-child, .top nav a:nth-child(2) { display: none; } }
+
+/* hero */
+.hero { padding-block: 40px 8px; display: grid; gap: 24px; }
+.hero h1 { font-size: clamp(2.8rem, 10vw, 5.8rem); }
+.hero .sub { color: var(--muted); max-width: 54ch; font-size: 1.1rem; }
+.hero-img { border-radius: 4px; overflow: hidden; background: var(--sky); line-height: 0; }
+.hero-img svg { width: 100%; height: auto; display: block; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 14px; color: var(--muted); }
+.facts b { color: var(--fg); font-weight: 600; }
+
+section { padding-block: 56px 8px; }
+.sec-head { display: grid; gap: 8px; margin-bottom: 28px; }
+.sec-head h2 { font-size: clamp(1.8rem, 5vw, 2.6rem); }
+
+/* tentang */
+.concept { display: grid; gap: 32px; grid-template-columns: 1fr; }
+@media (min-width: 820px) { .concept { grid-template-columns: 1.1fr 1fr; gap: 56px; } }
+.concept p + p { margin-top: 14px; }
+.concept .lead { font-size: 1.15rem; }
+.chars { display: grid; border-top: 2px solid var(--fg); align-self: start; }
+.chars div { padding-block: 16px; border-bottom: 1px solid var(--line); }
+.chars h3 { font-size: 1.2rem; margin-bottom: 2px; }
+.chars p { color: var(--muted); font-size: 15px; }
+
+/* fasilitas */
+.fac { list-style: none; margin: 0; padding: 0; display: grid; gap: 0 32px; grid-template-columns: 1fr; border-top: 2px solid var(--fg); }
+@media (min-width: 640px) { .fac { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 960px) { .fac { grid-template-columns: 1fr 1fr 1fr; } }
+.fac li { display: flex; justify-content: space-between; gap: 16px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.fac span:last-child { color: var(--muted); font-size: 14px; text-align: right; }
+.fac span:first-child { font-weight: 500; }
+
+/* kamar */
+.room { display: grid; gap: 28px; grid-template-columns: 1fr; min-width: 0; }
+@media (min-width: 900px) { .room { grid-template-columns: 1.25fr 1fr; gap: 48px; align-items: start; } }
+.gallery {
+  display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; min-width: 0;
+  margin-inline: -16px; padding-inline: 16px; scroll-padding-inline: 16px; padding-bottom: 6px;
+  scrollbar-width: thin;
+}
+@media (min-width: 900px) { .gallery { margin-inline: 0; padding-inline: 0; scroll-padding-inline: 0; } }
+.shot { flex: 0 0 82%; max-width: 440px; scroll-snap-align: start; margin: 0; }
+.shot .pic { aspect-ratio: 4 / 3; border-radius: 4px; overflow: hidden; background: var(--surface); line-height: 0; }
+.shot svg { width: 100%; height: 100%; display: block; }
+.shot figcaption { font-size: 13px; color: var(--muted); padding-top: 6px; }
+.info { display: grid; gap: 16px; align-content: start; min-width: 0; }
+.room h3 { font-size: clamp(1.8rem, 5vw, 2.4rem); }
+.price { font-variant-numeric: tabular-nums; }
+.price b { font-size: 1.6rem; font-weight: 700; font-family: var(--font-display); }
+.price span { color: var(--muted); font-size: 14px; }
+.info .desc { color: var(--muted); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.tags li { font-size: 13px; border: 1px solid var(--line); border-radius: 999px; padding: 2px 12px; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--btn); color: var(--btn-fg); border: 0; border-radius: 4px;
+  padding: 14px 24px; font: 600 15px var(--font-body); text-decoration: none; cursor: pointer;
+}
+.btn:hover { filter: brightness(1.1); }
+.info .btn { justify-self: start; }
+@media (max-width: 480px) { .info .btn { justify-self: stretch; } }
+
+/* sekitar */
+.near { list-style: none; margin: 0; padding: 0; display: grid; gap: 0 32px; grid-template-columns: 1fr; border-top: 2px solid var(--fg); }
+@media (min-width: 760px) { .near { grid-template-columns: 1fr 1fr 1fr; } }
+.near li { padding-block: 16px 20px; border-bottom: 1px solid var(--line); }
+.near h3 { font-size: 1.2rem; margin-bottom: 4px; }
+.near p { color: var(--muted); font-size: 15px; }
+
+/* kontak */
+footer { margin-top: 72px; margin-inline: -16px; padding: 48px 16px 40px; background: var(--foot-bg); color: var(--foot-fg); }
+footer .wrap { display: grid; gap: 32px; grid-template-columns: 1fr; }
+@media (min-width: 820px) { footer .wrap { grid-template-columns: 1.2fr 1fr 1fr; } }
+footer h2 { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+footer .eyebrow { color: var(--foot-accent); display: block; margin-bottom: 6px; }
+footer p, footer a { font-size: 15px; }
+footer .list { display: grid; gap: 14px; min-width: 0; align-content: start; }
+footer .num { font-variant-numeric: tabular-nums; user-select: all; overflow-wrap: anywhere; }
+footer a.out { display: inline-flex; width: fit-content; border-bottom: 1px solid var(--foot-accent); text-decoration: none; padding-bottom: 1px; }
+footer small { display: block; margin-top: 36px; opacity: .65; font-size: 13px; }
+
+/* modal */
+.overlay {
+  position: fixed; inset: 0; z-index: 50; display: flex; align-items: flex-end; justify-content: center;
+  background: rgba(10, 8, 6, .65); padding: 0;
+}
+.overlay[hidden] { display: none !important; }
+.sheet {
+  background: var(--bg); color: var(--fg); width: 100%; max-width: 480px; max-height: 100%; overflow-y: auto;
+  border-radius: 10px 10px 0 0; padding: 22px 20px calc(22px + env(safe-area-inset-bottom, 0px));
+  display: grid; gap: 16px;
+}
+@media (min-width: 560px) { .overlay { align-items: center; padding: 16px; } .sheet { border-radius: 10px; } }
+.sheet-top { display: flex; justify-content: space-between; align-items: start; gap: 12px; }
+.sheet h2 { font-size: 1.5rem; }
+.x { background: none; border: 1px solid var(--line); color: var(--fg); width: 36px; height: 36px; border-radius: 4px; font-size: 18px; cursor: pointer; flex: none; }
+.row { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+.field { display: grid; gap: 4px; min-width: 0; align-content: start; }
+.field.full { grid-column: 1 / -1; }
+label { font-size: 13px; font-weight: 600; }
+input, textarea {
+  font: 16px var(--font-body); color: var(--fg); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 4px; padding: 10px 12px; width: 100%; min-width: 0;
+}
+textarea { resize: vertical; min-height: 64px; }
+.hint { font-size: 12px; color: var(--muted); }
+.total { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-top: 1px solid var(--line); padding-top: 14px; font-variant-numeric: tabular-nums; }
+.total b { font-size: 1.3rem; font-weight: 700; font-family: var(--font-display); }
+.done { border: 1px solid var(--line); background: var(--surface); border-radius: 4px; padding: 12px 14px; font-size: 14px; }
+.sheet .btn { width: 100%; }
+@media (prefers-reduced-motion: no-preference) { .btn { transition: filter .15s; } }
+</style>
+</head>
+<body>
+
+
+<!-- Gambar contoh (ilustrasi). Ganti dengan foto asli Rika's Place. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="s-bed" viewBox="0 0 400 300">
+      <rect width="400" height="300" fill="var(--surface)"/>
+      <rect y="220" width="400" height="80" fill="var(--wood)" opacity=".3"/>
+      <rect x="40" y="70" width="320" height="22" fill="var(--roof)"/>
+      <rect x="50" y="170" width="300" height="56" rx="4" fill="var(--wall)" stroke="var(--line)" stroke-width="2"/>
+      <rect x="66" y="140" width="110" height="34" rx="10" fill="var(--wall)" stroke="var(--line)" stroke-width="2"/>
+      <rect x="224" y="140" width="110" height="34" rx="10" fill="var(--wall)" stroke="var(--line)" stroke-width="2"/>
+      <rect x="50" y="192" width="300" height="34" rx="4" fill="var(--wood)"/>
+      <rect x="50" y="226" width="300" height="12" fill="var(--roof)"/>
+      <rect x="12" y="170" width="26" height="52" fill="var(--roof)"/>
+      <circle cx="25" cy="154" r="10" fill="var(--sun)"/>
+      <rect x="362" y="170" width="26" height="52" fill="var(--roof)"/>
+      <circle cx="375" cy="154" r="10" fill="var(--sun)"/>
+    </symbol>
+    <symbol id="s-bath" viewBox="0 0 400 300">
+      <rect width="400" height="300" fill="var(--surface)"/>
+      <rect y="220" width="400" height="80" fill="var(--far)" opacity=".5"/>
+      <rect x="250" y="40" width="110" height="230" fill="var(--glass)" opacity=".6"/>
+      <path d="M250 40h110v230H250z" fill="none" stroke="var(--roof)" stroke-width="5"/>
+      <path d="M290 40v26h40" stroke="var(--roof)" stroke-width="5" fill="none"/>
+      <rect x="322" y="62" width="24" height="10" rx="5" fill="var(--roof)"/>
+      <rect x="50" y="60" width="100" height="90" rx="4" fill="var(--glass)"/>
+      <rect x="40" y="160" width="130" height="18" rx="4" fill="var(--wall)" stroke="var(--line)" stroke-width="2"/>
+      <rect x="60" y="178" width="90" height="72" fill="var(--wood)"/>
+      <circle cx="105" cy="150" r="3" fill="var(--roof)"/>
+    </symbol>
+    <symbol id="s-meet" viewBox="0 0 400 300">
+      <rect width="400" height="300" fill="var(--sky)"/>
+      <rect y="240" width="400" height="60" fill="var(--wood)" opacity=".5"/>
+      <path d="M0 80L200 20l200 60v16H0z" fill="var(--roof)"/>
+      <rect x="40" y="96" width="10" height="150" fill="var(--roof)"/>
+      <rect x="350" y="96" width="10" height="150" fill="var(--roof)"/>
+      <rect x="110" y="170" width="180" height="14" rx="2" fill="var(--wood)"/>
+      <rect x="130" y="184" width="10" height="58" fill="var(--roof)"/>
+      <rect x="260" y="184" width="10" height="58" fill="var(--roof)"/>
+      <rect x="130" y="150" width="30" height="12" rx="2" fill="var(--wall)" stroke="var(--line)" stroke-width="2"/>
+      <rect x="240" y="148" width="40" height="22" rx="2" fill="var(--glass)"/>
+      <rect x="70" y="190" width="30" height="8" fill="var(--roof)"/>
+      <rect x="70" y="160" width="6" height="34" fill="var(--roof)"/>
+      <rect x="74" y="198" width="6" height="44" fill="var(--roof)"/>
+      <rect x="300" y="190" width="30" height="8" fill="var(--roof)"/>
+      <rect x="324" y="160" width="6" height="34" fill="var(--roof)"/>
+      <rect x="322" y="198" width="6" height="44" fill="var(--roof)"/>
+      <rect x="150" y="212" width="90" height="8" fill="var(--roof)" opacity="0"/>
+    </symbol>
+    <symbol id="s-river" viewBox="0 0 400 300">
+      <rect width="400" height="300" fill="var(--sky)"/>
+      <circle cx="320" cy="64" r="24" fill="var(--sun)"/>
+      <path d="M0 150L70 90l60 50 70-70 90 80 110-60v160H0z" fill="var(--far)"/>
+      <path d="M0 170q80-30 170-6t230-14v110H0z" fill="var(--near)"/>
+      <path d="M0 210q100-20 200 0t200-6v96H0z" fill="var(--glass)"/>
+      <path d="M40 240q40-8 80 0M220 232q50-8 100 0M120 268q60-8 120 0" stroke="var(--wall)" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>
+      <rect y="268" width="400" height="32" fill="var(--wood)" opacity=".6"/>
+      <rect x="0" y="262" width="400" height="8" fill="var(--roof)"/>
+      <rect x="40" y="226" width="6" height="40" fill="var(--roof)"/>
+      <rect x="354" y="226" width="6" height="40" fill="var(--roof)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#atas">Rika's Place</a>
+    <nav aria-label="Menu">
+      <a href="#tentang">Tentang</a>
+      <a href="#fasilitas">Fasilitas</a>
+      <a href="#kamar">Kamar</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="atas">
+  <section class="hero" style="padding-top:40px">
+    <div style="display:grid;gap:14px">
+      <span class="eyebrow">Guest House · Bukit Lawang</span>
+      <h1>Rika's Place</h1>
+      <p class="sub">Letak strategis di tepi sungai Bukit Lawang dengan pemandangan langsung menghadap sungai Bukit Lawang Indah.</p>
+    </div>
+
+    <div class="hero-img">
+      <svg viewBox="0 0 800 400" role="img" aria-label="Ilustrasi guest house di tepi sungai dengan perbukitan hutan di belakangnya">
+        <rect width="800" height="400" fill="var(--sky)"/>
+        <circle cx="660" cy="80" r="34" fill="var(--sun)"/>
+        <path d="M0 230L120 110l110 90 120-120 150 140 110-70 190 110v140H0z" fill="var(--far)"/>
+        <path d="M0 260q200-60 400-14t400-30v110H0z" fill="var(--near)"/>
+        <!-- pohon -->
+        <rect x="70" y="190" width="10" height="90" fill="var(--roof)"/>
+        <circle cx="75" cy="180" r="42" fill="var(--near)"/>
+        <rect x="720" y="196" width="10" height="84" fill="var(--roof)"/>
+        <circle cx="725" cy="186" r="38" fill="var(--near)"/>
+        <!-- guest house -->
+        <rect x="230" y="190" width="340" height="94" fill="var(--wall)"/>
+        <path d="M200 194L400 118l200 76-14 12H214z" fill="var(--roof)"/>
+        <rect x="260" y="218" width="70" height="46" fill="var(--glass)"/>
+        <path d="M295 218v46M260 241h70" stroke="var(--wall)" stroke-width="4"/>
+        <rect x="365" y="214" width="70" height="70" fill="var(--wood)"/>
+        <rect x="470" y="218" width="70" height="46" fill="var(--glass)"/>
+        <path d="M505 218v46M470 241h70" stroke="var(--wall)" stroke-width="4"/>
+        <rect x="232" y="194" width="8" height="90" fill="var(--roof)"/>
+        <rect x="560" y="194" width="8" height="90" fill="var(--roof)"/>
+        <!-- deck dan sungai -->
+        <rect y="284" width="800" height="14" fill="var(--roof)"/>
+        <path d="M0 298h800v102H0z" fill="var(--glass)"/>
+        <path d="M60 330q60-10 120 0M300 346q80-10 160 0M560 322q60-10 120 0M140 374q80-10 160 0M520 372q70-10 140 0" stroke="var(--wall)" stroke-width="4" fill="none" stroke-linecap="round" opacity=".75"/>
+      </svg>
+    </div>
+
+    <div class="facts">
+      <span><b>3</b> kamar Deluxe Double</span>
+      <span>Check-in <b>14.00</b></span>
+      <span>Check-out <b>12.00</b></span>
+      <span>Tepi <b>sungai Bukit Lawang</b></span>
+    </div>
+  </section>
+
+  <section id="tentang">
+    <div class="concept">
+      <div>
+        <div class="sec-head">
+          <span class="eyebrow">Tentang</span>
+          <h2>Menginap dengan suara sungai</h2>
+        </div>
+        <p class="lead">Rika's Place berdiri di tepi sungai Bukit Lawang. Dari kamar dan area duduk di luar, Anda langsung menghadap aliran sungai.</p>
+        <p>Hanya ada tiga kamar, jadi suasananya tenang dan pelayanannya personal. Cocok untuk pasangan, keluarga kecil, rombongan kecil yang datang untuk trekking, atau tim yang ingin rapat santai di luar ruangan.</p>
+      </div>
+      <div class="chars" aria-label="Karakter guest house">
+        <div><h3>Di tepi sungai</h3><p>Pemandangan langsung ke sungai Bukit Lawang Indah dari tempat Anda duduk.</p></div>
+        <div><h3>Kecil dan personal</h3><p>Tiga kamar saja. Tamu mudah dikenali dan dilayani dengan baik.</p></div>
+        <div><h3>Santai dan praktis</h3><p>Area duduk outdoor bisa dipakai untuk bersantai atau meeting kecil.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="fasilitas">
+    <div class="sec-head">
+      <span class="eyebrow">Fasilitas</span>
+      <h2>Yang Anda dapatkan</h2>
+    </div>
+    <ul class="fac">
+      <li><span>Kamar mandi bersih</span><span>Di dalam kamar</span></li>
+      <li><span>Area duduk outdoor</span><span>Untuk meeting &amp; santai</span></li>
+      <li><span>Pemandangan sungai</span><span>Langsung dari kamar</span></li>
+      <li><span>Air panas</span><span>Water heater</span></li>
+      <li><span>Wi-Fi</span><span>Seluruh area</span></li>
+      <li><span>Parkir</span><span>Halaman guest house</span></li>
+    </ul>
+  </section>
+
+  <section id="kamar">
+    <div class="sec-head">
+      <span class="eyebrow">Kamar</span>
+      <h2>Deluxe Double</h2>
+    </div>
+
+    <article class="room" aria-labelledby="r-deluxe">
+      <div class="gallery" tabindex="0" aria-label="Foto kamar Deluxe Double">
+        <figure class="shot"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-bed"/></svg></div><figcaption>Tempat tidur double</figcaption></figure>
+        <figure class="shot"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-bath"/></svg></div><figcaption>Kamar mandi bersih</figcaption></figure>
+        <figure class="shot"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-meet"/></svg></div><figcaption>Area duduk outdoor untuk meeting</figcaption></figure>
+        <figure class="shot"><div class="pic"><svg viewBox="0 0 400 300" aria-hidden="true"><use href="#s-river"/></svg></div><figcaption>Pemandangan sungai</figcaption></figure>
+      </div>
+      <div class="info">
+        <h3 id="r-deluxe">Kamar Deluxe Double</h3>
+        <p class="price"><b>Rp 350.000</b> <span>/ malam</span></p>
+        <p class="desc">Tempat tidur double yang luas dengan kamar mandi bersih di dalam kamar. Tersedia 3 kamar, semuanya menghadap sungai.</p>
+        <ul class="tags"><li>3 kamar tersedia</li><li>1 tempat tidur double</li><li>Maks. 2 tamu per kamar</li><li>Kamar mandi dalam</li></ul>
+        <button class="btn" type="button" id="bookBtn">Reservasi kamar</button>
+      </div>
+    </article>
+  </section>
+
+  <section id="sekitar">
+    <div class="sec-head">
+      <span class="eyebrow">Sekitar Bukit Lawang</span>
+      <h2>Yang bisa dilakukan di dekat sini</h2>
+    </div>
+    <ul class="near">
+      <li><h3>Trekking orangutan</h3><p>Masuk ke hutan Taman Nasional Gunung Leuser untuk melihat orangutan di habitat aslinya.</p></li>
+      <li><h3>Tubing di sungai</h3><p>Mengapung di sungai dengan ban dalam sambil menikmati tebing dan hutan di kiri kanan.</p></li>
+      <li><h3>Jalan santai di desa</h3><p>Warung, kedai kopi, dan toko suvenir berjejer di sepanjang tepi sungai.</p></li>
+    </ul>
+  </section>
+</main>
+
+<footer id="kontak">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Kontak</span>
+      <h2>Tanya atau pesan langsung</h2>
+      <p style="margin-top:12px;max-width:40ch;opacity:.8">Admin membalas pukul 07.00–21.00 WIB.</p>
+    </div>
+    <div class="list">
+      <div><span class="eyebrow">WhatsApp</span><span class="num" id="waShow">+62 812-3456-7890</span></div>
+      <a class="out" id="waOpen" href="https://wa.me/6281234567890" target="_blank" rel="noopener">Chat di WhatsApp</a>
+      <div><span class="eyebrow">Instagram</span><a class="out" href="https://instagram.com/rikasplace.bukitlawang" target="_blank" rel="noopener">@rikasplace.bukitlawang</a></div>
+    </div>
+    <div class="list">
+      <div><span class="eyebrow">Alamat</span><p>Tepi sungai Bukit Lawang, Kec. Bahorok, Kab. Langkat, Sumatera Utara</p></div>
+      <div><span class="eyebrow">Email</span><span class="num">halo@rikasplace.example</span></div>
+    </div>
+  </div>
+  <div class="wrap"><small>© 2026 Rika's Place Guest House. Halaman contoh, nomor, harga, dan gambar masih ilustrasi.</small></div>
+</footer>
+
+<div class="overlay" id="overlay" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="sheet-top">
+      <div>
+        <span class="eyebrow">Reservasi</span>
+        <h2 id="mTitle">Kamar Deluxe Double</h2>
+      </div>
+      <button class="x" type="button" id="mClose" aria-label="Tutup">✕</button>
+    </div>
+
+    <form id="form" novalidate>
+      <div class="row">
+        <div class="field full">
+          <label for="fName">Nama lengkap</label>
+          <input id="fName" name="name" type="text" autocomplete="name" placeholder="Nama Anda" required>
+        </div>
+        <div class="field full">
+          <label for="fDate">Tanggal check-in</label>
+          <input id="fDate" name="date" type="date" required>
+        </div>
+        <div class="field">
+          <label for="fNights">Lama menginap (malam)</label>
+          <input id="fNights" name="nights" type="number" min="1" max="30" inputmode="numeric" required>
+        </div>
+        <div class="field">
+          <label for="fRooms">Jumlah kamar</label>
+          <input id="fRooms" name="rooms" type="number" min="1" max="3" inputmode="numeric" required>
+          <span class="hint">Tersedia 3 kamar</span>
+        </div>
+        <div class="field full">
+          <label for="fGuests">Jumlah tamu</label>
+          <input id="fGuests" name="guests" type="number" min="1" inputmode="numeric" required>
+          <span class="hint" id="gHint"></span>
+        </div>
+        <div class="field full">
+          <label for="fNote">Catatan (opsional)</label>
+          <textarea id="fNote" name="note" placeholder="Contoh: datang sekitar pukul 16.00"></textarea>
+        </div>
+      </div>
+
+      <div class="total" style="margin-top:16px">
+        <span>Perkiraan total</span>
+        <b id="total">Rp 0</b>
+      </div>
+
+      <div style="display:grid;gap:12px;margin-top:16px">
+        <a class="btn" id="waLink" href="#" target="_blank" rel="noopener">Lanjut ke WhatsApp</a>
+        <p class="hint">Anda akan diarahkan ke WhatsApp admin dengan pesan reservasi yang sudah terisi. Reservasi baru pasti setelah admin membalas.</p>
+        <p class="done" id="done" hidden>WhatsApp dibuka di tab baru. Kirim pesannya agar admin bisa memproses reservasi Anda. Jika tidak terbuka, hubungi <span class="num" id="waAlt"></span>.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+(function () {
+  // Ganti nomor admin (format internasional, tanpa + dan tanpa 0 di depan)
+  var WA = "6281234567890";
+  var PRICE = 350000, PER_ROOM = 2, TOTAL_ROOMS = 3;
+  var $ = function (id) { return document.getElementById(id); };
+  var overlay = $("overlay"), form = $("form"), link = $("waLink");
+
+  var rp = function (n) { return "Rp " + n.toLocaleString("id-ID"); };
+  function pad(n) { return String(n).padStart(2, "0"); }
+  function ymd(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+  function fmtDate(v) {
+    var p = v.split("-");
+    return new Date(+p[0], +p[1] - 1, +p[2]).toLocaleDateString("id-ID", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  }
+  function maxGuests() {
+    var r = Math.min(TOTAL_ROOMS, Math.max(1, parseInt($("fRooms").value, 10) || 1));
+    return r * PER_ROOM;
+  }
+
+  $("waShow").textContent = "+" + WA.replace(/^(\d{2})(\d{3})(\d{4})(\d+)$/, "$1 $2-$3-$4");
+  $("waOpen").href = "https://wa.me/" + WA;
+  $("waAlt").textContent = $("waShow").textContent;
+
+  function build() {
+    var nights = Math.max(1, parseInt($("fNights").value, 10) || 1);
+    var rooms = Math.min(TOTAL_ROOMS, Math.max(1, parseInt($("fRooms").value, 10) || 1));
+    var total = PRICE * nights * rooms;
+    $("fGuests").max = maxGuests();
+    $("gHint").textContent = "Maksimal " + maxGuests() + " orang untuk " + rooms + " kamar";
+    $("total").textContent = rp(total);
+    var msg = [
+      "Halo Admin Rika's Place, saya ingin reservasi:",
+      "",
+      "Nama: " + ($("fName").value.trim() || "-"),
+      "Kamar: Deluxe Double x " + rooms,
+      "Check-in: " + ($("fDate").value ? fmtDate($("fDate").value) : "-"),
+      "Lama menginap: " + ($("fNights").value || "-") + " malam",
+      "Jumlah tamu: " + ($("fGuests").value || "-") + " orang",
+      "Perkiraan total: " + rp(total)
+    ];
+    var note = $("fNote").value.trim();
+    if (note) msg.push("Catatan: " + note);
+    msg.push("", "Mohon info ketersediaannya. Terima kasih.");
+    link.href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg.join("\n"));
+  }
+
+  function open() {
+    var t = new Date(); t.setDate(t.getDate() + 1);
+    $("fDate").min = ymd(new Date());
+    $("fDate").value = ymd(t);
+    $("fNights").value = 1;
+    $("fRooms").value = 1;
+    $("fGuests").value = 2;
+    $("done").hidden = true;
+    overlay.hidden = false;
+    document.body.style.overflow = "hidden";
+    build();
+    $("fName").focus();
+  }
+  function close() {
+    overlay.hidden = true;
+    document.body.style.overflow = "";
+    $("bookBtn").focus();
+  }
+
+  $("bookBtn").addEventListener("click", open);
+  $("mClose").addEventListener("click", close);
+  overlay.addEventListener("click", function (e) { if (e.target === overlay) close(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !overlay.hidden) close(); });
+  form.addEventListener("input", build);
+  form.addEventListener("submit", function (e) { e.preventDefault(); });
+
+  link.addEventListener("click", function (e) {
+    build();
+    if (!form.checkValidity()) {
+      e.preventDefault();
+      form.reportValidity();
+      return;
+    }
+    $("done").hidden = false;
+  });
+})();
+</script>
+
+</body>
+</html>
